@@ -105,123 +105,181 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to Delete customers with 'GRADE' 3 or 'AGENT_CODE' 'A008' whose 'OUTSTANDING_AMT' is less than 5000
 
 ```sql
--- Paste your SQL code below for Question 1
+DELETE FROM Customer
+WHERE (GRADE = 3 OR AGENT_CODE = 'A008')
+  AND OUTSTANDING_AMT < 5000;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1185" height="466" alt="image" src="https://github.com/user-attachments/assets/434ab9b9-c26b-4f25-b7cc-31bf86e3f030" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to categorize decimal as 'High', 'Medium', or 'Low' based on whether it is greater than 100, between 50 and 100, or less than 50 in the Calculations table
+
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT 
+    id,
+    decimal,
+    CASE
+        WHEN decimal > 100 THEN 'High'
+        WHEN decimal BETWEEN 50 AND 100 THEN 'Medium'
+        ELSE 'Low'
+    END AS category
+FROM Calculations;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="917" height="561" alt="image" src="https://github.com/user-attachments/assets/c61fc570-2fec-43a2-ac66-5f71655fc93a" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Decrease the reorder level by 30 percent where the product name contains 'cream' and quantity in stock is higher than reorder level in the products table.
+
+PRODUCTS TABLE
+
+name               type
+-----------------  ---------------
+product_id         INT
+product_name       VARCHAR(100)
+category           VARCHAR(50)
+cost_price         DECIMAL(10,2)
+sell_price         DECIMAL(10,2)
+reorder_lvl        INT
+quantity           INT
+supplier_id        INT
+ 
 
 ```sql
--- Paste your SQL code below for Question 3
+UPDATE products
+SET reorder_lvl = CAST(reorder_lvl * 0.7 AS INT)
+WHERE product_name LIKE '%cream%'
+  AND quantity > reorder_lvl;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1223" height="525" alt="image" src="https://github.com/user-attachments/assets/40493993-db0f-454a-b66e-f62dfa3cbb18" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is odd.
+
 
 ```sql
--- Paste your SQL code below for Question 4
+DELETE FROM Customer
+WHERE GRADE % 2 = 1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1222" height="512" alt="image" src="https://github.com/user-attachments/assets/864bc4e5-4723-401e-90e3-ff34f9fee082" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL statement to Change the supplier name to 'A1 Suppliers' where the supplier ID is 8 in the suppliers table.
 
 ```sql
--- Paste your SQL code below for Question 5
+UPDATE suppliers
+SET supplier_name = 'A1 Suppliers'
+WHERE supplier_id = 8;
+
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1232" height="476" alt="image" src="https://github.com/user-attachments/assets/366811b3-5f3b-485e-a27a-6667aece3c62" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to delete a doctor from Doctors table whos specialization is 'Cardiology'
 
 ```sql
--- Paste your SQL code below for Question 6
+DELETE FROM Doctors
+WHERE specialization = 'Cardiology';
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1227" height="475" alt="image" src="https://github.com/user-attachments/assets/3e0757db-db6a-4093-a1db-a866fa4ce822" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL statement to display name and commission of first 5 salesmen.
+
+table info
+
+salesman(name,commission) 
+
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT name, commission
+FROM salesman
+LIMIT 5;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="567" height="445" alt="image" src="https://github.com/user-attachments/assets/dfa731de-f0a8-47ae-bc71-c50ff2641ea0" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM Customer
+WHERE CUST_COUNTRY NOT IN ('India', 'USA');
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1202" height="506" alt="image" src="https://github.com/user-attachments/assets/0e4dc10f-91fd-4d6f-900c-6e5323da420a" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a query to display the unique employee ID from EmployeePosition table who joined in 2024 and have a salary greater than 50000.
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT DISTINCT EmpID
+FROM EmployeePosition
+WHERE strftime('%Y', DateOfJoining) = '2024'
+  AND Salary > 50000;
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="402" height="260" alt="image" src="https://github.com/user-attachments/assets/1c7f0d1f-3d27-416c-8ed9-1574d75b2a04" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL statement to change the email column of employees table with 'Unavailable' for all employees in employees table.
+
 
 ```sql
--- Paste your SQL code below for Question 10
+UPDATE employees
+SET email = 'Unavailable';
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1227" height="453" alt="image" src="https://github.com/user-attachments/assets/bf9807c9-f902-470d-ba6c-3d507220a1a4" />
+
 
 
 ## RESULT
