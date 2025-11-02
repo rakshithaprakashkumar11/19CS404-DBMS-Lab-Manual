@@ -105,114 +105,140 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
-Write a SQL query to Delete customers with 'GRADE' 3 or 'AGENT_CODE' 'A008' whose 'OUTSTANDING_AMT' is less than 5000
+Create a table named Members with the following columns:
+
+MemberID as INTEGER
+MemberName as TEXT
+JoinDate as DATE
 
 ```sql
-DELETE FROM Customer
-WHERE (GRADE = 3 OR AGENT_CODE = 'A008')
-  AND OUTSTANDING_AMT < 5000;
+CREATE TABLE Members (
+MemberID INTEGER,
+MemberName TEXT,
+JoinDate DATE
+);
 ```
 
 **Output:**
 
-<img width="1185" height="466" alt="image" src="https://github.com/user-attachments/assets/434ab9b9-c26b-4f25-b7cc-31bf86e3f030" />
+<img width="1236" height="469" alt="image" src="https://github.com/user-attachments/assets/77e53f30-c9f9-4bc0-b46a-51f1ef75655d" />
+
 
 
 **Question 2**
 ---
-Write a SQL query to categorize decimal as 'High', 'Medium', or 'Low' based on whether it is greater than 100, between 50 and 100, or less than 50 in the Calculations table
-
-
+Write a SQL query to Add a new column mobilenumber as number in the Student_details table.
 ```sql
-SELECT 
-    id,
-    decimal,
-    CASE
-        WHEN decimal > 100 THEN 'High'
-        WHEN decimal BETWEEN 50 AND 100 THEN 'Medium'
-        ELSE 'Low'
-    END AS category
-FROM Calculations;
+ALTER TABLE Student_details
+ADD mobilenumber number;
 ```
 
 **Output:**
 
-<img width="917" height="561" alt="image" src="https://github.com/user-attachments/assets/c61fc570-2fec-43a2-ac66-5f71655fc93a" />
+<img width="1239" height="445" alt="image" src="https://github.com/user-attachments/assets/7c451215-b52f-40d9-9943-8af7466335ec" />
+
 
 
 **Question 3**
 ---
-Decrease the reorder level by 30 percent where the product name contains 'cream' and quantity in stock is higher than reorder level in the products table.
-
-PRODUCTS TABLE
-
-name               type
------------------  ---------------
-product_id         INT
-product_name       VARCHAR(100)
-category           VARCHAR(50)
-cost_price         DECIMAL(10,2)
-sell_price         DECIMAL(10,2)
-reorder_lvl        INT
-quantity           INT
-supplier_id        INT
+Create a new table named products with the following specifications:
+product_id as INTEGER and primary key.
+product_name as TEXT and not NULL.
+list_price as DECIMAL (10, 2) and not NULL.
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+A CHECK constraint at the table level to ensure:
+list_price is greater than or equal to discount
+discount is greater than or equal to 0
+list_price is greater than or equal to 0
  
 
 ```sql
-UPDATE products
-SET reorder_lvl = CAST(reorder_lvl * 0.7 AS INT)
-WHERE product_name LIKE '%cream%'
-  AND quantity > reorder_lvl;
+CREATE TABLE products (
+product_id INTEGER PRIMARY KEY,
+product_name TEXT NOT NULL,
+list_price DECIMAL(10,2) NOT NULL,
+discount DECIMAL(10,2) DEFAULT 0 NOT NULL,
+CHECK (
+list_price >= discount
+AND discount >= 0
+AND list_price >= 0
+)
+);
 ```
 
 **Output:**
 
-<img width="1223" height="525" alt="image" src="https://github.com/user-attachments/assets/40493993-db0f-454a-b66e-f62dfa3cbb18" />
+<img width="1234" height="372" alt="image" src="https://github.com/user-attachments/assets/bbcfbb10-b08e-48db-9d01-51377f55cb01" />
+
 
 
 **Question 4**
 ---
-Write a SQL query to Delete customers from 'customer' table where 'GRADE' is odd.
-
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
 ```sql
-DELETE FROM Customer
-WHERE GRADE % 2 = 1;
-```
+
+```CREATE TABLE Orders (
+OrderID INTEGER PRIMARY KEY,
+OrderDate DATE NOT NULL,
+CustomerID INTEGER,
+FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
 
 **Output:**
 
-<img width="1222" height="512" alt="image" src="https://github.com/user-attachments/assets/864bc4e5-4723-401e-90e3-ff34f9fee082" />
+<img width="1227" height="377" alt="image" src="https://github.com/user-attachments/assets/d96374c7-b13b-4054-b6ac-26307f9b885b" />
+
 
 
 **Question 5**
 ---
-Write a SQL statement to Change the supplier name to 'A1 Suppliers' where the supplier ID is 8 in the suppliers table.
+Create a table named Locations with the following columns:
+
+LocationID as INTEGER
+LocationName as TEXT
+Address as TEXT
 
 ```sql
-UPDATE suppliers
-SET supplier_name = 'A1 Suppliers'
-WHERE supplier_id = 8;
-
+CREATE TABLE Locations (
+LocationID INTEGER,
+LocationName TEXT,
+Address TEXT
+);
 ```
 
 **Output:**
 
-<img width="1232" height="476" alt="image" src="https://github.com/user-attachments/assets/366811b3-5f3b-485e-a27a-6667aece3c62" />
+<img width="1224" height="463" alt="image" src="https://github.com/user-attachments/assets/9b3d9c77-7ecc-4e42-9ca9-d59f5e7ab74d" />
+
 
 
 **Question 6**
 ---
-Write a SQL query to delete a doctor from Doctors table whos specialization is 'Cardiology'
+Create a table named Customers with the following columns:
+
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
 
 ```sql
-DELETE FROM Doctors
-WHERE specialization = 'Cardiology';
+CREATE TABLE Customers (
+CustomerID INTEGER,
+Name TEXT,
+Email TEXT,
+JoinDate DATETIME
+);
+
 ```
 
 **Output:**
 
-<img width="1227" height="475" alt="image" src="https://github.com/user-attachments/assets/3e0757db-db6a-4093-a1db-a866fa4ce822" />
+<img width="1235" height="487" alt="image" src="https://github.com/user-attachments/assets/082795a5-1f3d-43c1-a059-e9cbe1b34d4d" />
+
 
 **Question 7**
 ---
@@ -236,49 +262,51 @@ LIMIT 5;
 
 **Question 8**
 ---
-Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 ```sql
-DELETE FROM Customer
-WHERE CUST_COUNTRY NOT IN ('India', 'USA');
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year) VALUES ('978-1234567890', 'Introduction to AI', 'John Doe', NULL, NULL);
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year) VALUES ('978-9876543210', 'Deep Learning', 'Jane Doe', 'TechPress', 2022);
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year) VALUES ('978-1122334455', 'Cybersecurity Essentials', 'Alice Smith',NULL,2021);
 ```
 
 **Output:**
 
-<img width="1202" height="506" alt="image" src="https://github.com/user-attachments/assets/0e4dc10f-91fd-4d6f-900c-6e5323da420a" />
+<img width="1234" height="377" alt="image" src="https://github.com/user-attachments/assets/60fcefa6-c418-4e12-830c-cc5db83c466a" />
+
 
 
 **Question 9**
 ---
-Write a query to display the unique employee ID from EmployeePosition table who joined in 2024 and have a salary greater than 50000.
+Insert the below data into the Books table, allowing the Publisher and Year columns to take their default values.
 
 ```sql
-SELECT DISTINCT EmpID
-FROM EmployeePosition
-WHERE strftime('%Y', DateOfJoining) = '2024'
-  AND Salary > 50000;
+INSERT INTO Books (ISBN, Title, Author) VALUES ('978-6655443321', 'Big Data Analytics', 'Karen Adams');
 
 ```
 
 **Output:**
 
-<img width="402" height="260" alt="image" src="https://github.com/user-attachments/assets/1c7f0d1f-3d27-416c-8ed9-1574d75b2a04" />
+<img width="1227" height="407" alt="image" src="https://github.com/user-attachments/assets/010bdcc8-3ad1-4ca7-91e6-47f7ad2b03d5" />
+
 
 
 **Question 10**
 ---
-Write a SQL statement to change the email column of employees table with 'Unavailable' for all employees in employees table.
+In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 
 ```sql
-UPDATE employees
-SET email = 'Unavailable';
+INSERT INTO Products (ProductID, Name, Category, Price, Stock) VALUES (106, 'Fitness Tracker', 'Wearables', NULL, NULL);
+INSERT INTO Products (ProductID, Name, Category, Price, Stock) VALUES (107, 'Laptop', 'Electronics', 999.99, 50);
+INSERT INTO Products (ProductID, Name, Category, Price, Stock) VALUES (108, 'Wireless Earbuds', 'Accessories', NULL, 100);
+
 
 ```
 
 **Output:**
 
-<img width="1227" height="453" alt="image" src="https://github.com/user-attachments/assets/bf9807c9-f902-470d-ba6c-3d507220a1a4" />
+<img width="1228" height="380" alt="image" src="https://github.com/user-attachments/assets/48c41391-1337-43bb-8277-c03d0dad50fe" />
 
 
 
